@@ -15,24 +15,12 @@ namespace TttC
 {
     public partial class Form1 : Form
     {
-        //declare verses
-        //John 3:16
-        const string john316 = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.";
-        //2 Corinthians 4:16
-        const string corinthians416 = "Therefore we do not lose heart. Even though our outward man is perishing, yet the inward man is being renewed day by day.";
-        //Proverbs 1:8-9
-        const string proverbs18 = "Listen, my son, to your father's instruction and do not forsake your mother’s teaching. They are a garland to grace your head and a chain to adorn your neck.";
-        
-        string[] verseDatabase = new string[3] { john316, corinthians416, proverbs18 };
-
-        //string[,] db;
         class Verse
         {
             string[] db = new string[3];
             List<string> database = new List<string>();
             List<Verse> verses = new List<Verse>();
             
-            // Figure out how to make tags an array
             string tags;
             string reference;
             string text;

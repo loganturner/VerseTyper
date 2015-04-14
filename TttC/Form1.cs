@@ -22,7 +22,7 @@ namespace TttC
         const string proverbs18 = "Listen, my son, to your father's instruction and do not forsake your mother’s teaching. They are a garland to grace your head and a chain to adorn your neck.";
         
         string[] verseDatabase = new string[3] { john316, corinthians416, proverbs18 };
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +30,9 @@ namespace TttC
             combatPanel.Visible = false;
             mainMenuPanel.Visible = true;
         }
+
+                    double totalTime;
+        double  totalWords;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -61,8 +64,13 @@ namespace TttC
                 overworldCharacter.Location = new Point(overworldCharacter.Location.X + 3, 155);       
                 if (overworldCharacter.Location.X > 450)
                 {
+                    double words;
+                    double WPM;
                     timer1.Enabled = false;
-                    MessageBox.Show("You win!");
+                    words = totalWords / 5;
+                    totalTime = totalTime / 60;
+                    WPM = words / totalTime;
+                    MessageBox.Show("You win! Your Words Per Minute = " + WPM);
                 }
 
                 if (overworldCharacter.Location.X % 150 == 0)
@@ -92,6 +100,7 @@ namespace TttC
         {
             // move actors suring combat
             if (textBox1.Text.Length > 0) { 
+             timer3.Enabled = true;
             if (verseLabel.Text.Substring(textBox1.Text.Length - 1, 1) != textBox1.Text.Substring(textBox1.Text.Length - 1, 1))
             {
                 textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Length - 1);
@@ -107,6 +116,8 @@ namespace TttC
 
             if (textBox1.Text.Length == verseLabel.Text.Length)
             {
+                timer3.Enabled = false;
+                totalWords += textBox1.Text.Length;
                 MessageBox.Show("You win Continue on your journey!");
                 monster.Location = new Point(432, 86);
                 textBox1.Text = "";
@@ -148,5 +159,12 @@ namespace TttC
             Form2 AFormInstance1 = new Form2();
             AFormInstance1.Show();
         }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            totalTime += 1;
+        }
     }
 }
+ 
+

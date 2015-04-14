@@ -31,8 +31,9 @@ namespace TttC
             mainMenuPanel.Visible = true;
         }
 
-                    double totalTime;
-        double  totalWords;
+        double totalTime;
+        double totalWords;
+        double savedTotalTime;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -70,7 +71,7 @@ namespace TttC
                     words = totalWords / 5;
                     totalTime = totalTime / 60;
                     WPM = words / totalTime;
-                    MessageBox.Show("You win! Your Words Per Minute = " + WPM);
+                    MessageBox.Show("You win! Your Words Per Minute = " + (int)WPM);
                 }
 
                 if (overworldCharacter.Location.X % 150 == 0)
@@ -99,7 +100,8 @@ namespace TttC
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             // move actors suring combat
-            if (textBox1.Text.Length > 0) { 
+            if (textBox1.Text.Length > 0) {
+             savedTotalTime = totalTime;
              timer3.Enabled = true;
             if (verseLabel.Text.Substring(textBox1.Text.Length - 1, 1) != textBox1.Text.Substring(textBox1.Text.Length - 1, 1))
             {
@@ -139,12 +141,14 @@ namespace TttC
                 if (dialogResult == DialogResult.Yes)
                 {
                     monster.Location = new Point(432, 86);
+                    totalTime = savedTotalTime;
                     timer2.Enabled = true;
                     textBox1.Text = "";
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     monster.Location = new Point(432, 86);
+                    totalTime = savedTotalTime;
                     textBox1.Text = "";
                     overworldPanel.Visible = true;
                     combatPanel.Visible = false;

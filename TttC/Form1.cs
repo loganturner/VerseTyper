@@ -1,9 +1,11 @@
-﻿//TTTC main prototype by Joshua Wilfong
+﻿using Microsoft.VisualBasic.FileIO;
+//TTTC main prototype by Joshua Wilfong
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,81 @@ namespace TttC
         const string proverbs18 = "Listen, my son, to your father's instruction and do not forsake your mother’s teaching. They are a garland to grace your head and a chain to adorn your neck.";
         
         string[] verseDatabase = new string[3] { john316, corinthians416, proverbs18 };
+
+        //string[,] db;
+
+        class Verse
+        {
+            string[,] db;
+            
+            // Figure out how to make tags an array
+            string[] tags;
+            string reference;
+            string text;
+
+            public Verse()
+            {
+
+            }
+
+            public Verse(string[] tags)
+            {
+                this.tags = tags;
+            }
+
+            public Verse(string[] tags, string reference, string text)
+            {
+                this.tags = tags;
+                this.reference = reference;
+                this.text = text;
+            }
+
+            public void readVerses()
+            {
+                TextFieldParser parser = new TextFieldParser(new StringReader("../Typing to the Cross Verses.csv"));
+
+
+                //parser.TextFieldType = FieldType.Delimited;
+                parser.HasFieldsEnclosedInQuotes = true;
+                parser.SetDelimiters(",");
+
+                int i = 0, j = 0;
+
+                while (!parser.EndOfData)
+                {
+                    string[] fields = parser.ReadFields();
+                    foreach (string field in fields)
+                    {
+                        db[i, j] = field;
+
+                    }
+
+                    j++;
+                    if (j == 2)
+                    {
+                        j = 0;
+                        i++;
+                    }
+                }
+                i = 0;
+                j = 0;
+                parser.Close();
+            }
+
+            internal string getVerse()
+            {
+                string verse;
+
+                readVerses();
+
+                verse = db[(int)(new Random().Next(1, db.Length)), 2];
+
+                return verse;
+            }
+
+        }
+
+        
 
         public Form1()
         {
@@ -71,7 +148,11 @@ namespace TttC
                     MessageBox.Show("Encounter! Prepare for Battle!");
                     overworldPanel.Visible = false;
                     combatPanel.Visible = true;
-                    verseLabel.Text = verseDatabase[(int)(new Random().Next(0, verseDatabase.Length))];
+                    
+                    Verse v = new Verse();
+                    verseLabel.Text = v.getVerse();
+                    
+                    //verseLabel.Text = verseDatabase[(int)(new Random().Next(0, verseDatabase.Length))];
                     textBox1.Focus();
                     timer2.Enabled = true;
                 }

@@ -33,6 +33,8 @@ namespace TttC
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Check listBox to see which tags are selected,
+            // and populate the verse list.
             mainMenuPanel.Visible = false;
             overworldPanel.Visible = true;
 
@@ -150,3 +152,4 @@ namespace TttC
         }
     }
 }
+where(x => x.Tags.contains(particularTag))

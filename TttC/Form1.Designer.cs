@@ -33,24 +33,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.overworldPanel = new System.Windows.Forms.Panel();
             this.overworldCharacter = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.combatPanel = new System.Windows.Forms.Panel();
-            this.verseLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.hero = new System.Windows.Forms.PictureBox();
             this.monster = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.hero = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.verseLabel = new System.Windows.Forms.Label();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.mainMenuPanel.SuspendLayout();
             this.overworldPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overworldCharacter)).BeginInit();
             this.combatPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.monster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hero)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +70,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(74, 228);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 37);
             this.button1.TabIndex = 1;
@@ -79,15 +80,26 @@
             // 
             // mainMenuPanel
             // 
+            this.mainMenuPanel.Controls.Add(this.checkedListBox1);
             this.mainMenuPanel.Controls.Add(this.button2);
             this.mainMenuPanel.Controls.Add(this.label1);
             this.mainMenuPanel.Controls.Add(this.button1);
             this.mainMenuPanel.Location = new System.Drawing.Point(11, 11);
-            this.mainMenuPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mainMenuPanel.Margin = new System.Windows.Forms.Padding(2);
             this.mainMenuPanel.Name = "mainMenuPanel";
-            this.mainMenuPanel.Size = new System.Drawing.Size(244, 281);
+            this.mainMenuPanel.Size = new System.Drawing.Size(455, 281);
             this.mainMenuPanel.TabIndex = 2;
             this.mainMenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainMenuPanel_Paint);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(38, 131);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(160, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Prototype Information";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // overworldPanel
             // 
@@ -95,7 +107,7 @@
             this.overworldPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.overworldPanel.Controls.Add(this.overworldCharacter);
             this.overworldPanel.Location = new System.Drawing.Point(19, 96);
-            this.overworldPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.overworldPanel.Margin = new System.Windows.Forms.Padding(2);
             this.overworldPanel.Name = "overworldPanel";
             this.overworldPanel.Size = new System.Drawing.Size(529, 247);
             this.overworldPanel.TabIndex = 2;
@@ -107,7 +119,7 @@
             this.overworldCharacter.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("overworldCharacter.BackgroundImage")));
             this.overworldCharacter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.overworldCharacter.Location = new System.Drawing.Point(0, 155);
-            this.overworldCharacter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.overworldCharacter.Margin = new System.Windows.Forms.Padding(2);
             this.overworldCharacter.Name = "overworldCharacter";
             this.overworldCharacter.Size = new System.Drawing.Size(41, 41);
             this.overworldCharacter.TabIndex = 0;
@@ -132,24 +144,6 @@
             this.combatPanel.Size = new System.Drawing.Size(529, 457);
             this.combatPanel.TabIndex = 3;
             // 
-            // verseLabel
-            // 
-            this.verseLabel.Location = new System.Drawing.Point(49, 349);
-            this.verseLabel.Name = "verseLabel";
-            this.verseLabel.Size = new System.Drawing.Size(440, 38);
-            this.verseLabel.TabIndex = 0;
-            this.verseLabel.Text = "Verse";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(52, 391);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(418, 53);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            // 
             // panel1
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
@@ -160,17 +154,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(523, 242);
             this.panel1.TabIndex = 3;
-            // 
-            // hero
-            // 
-            this.hero.BackColor = System.Drawing.Color.Transparent;
-            this.hero.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hero.BackgroundImage")));
-            this.hero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.hero.Location = new System.Drawing.Point(80, 106);
-            this.hero.Name = "hero";
-            this.hero.Size = new System.Drawing.Size(37, 37);
-            this.hero.TabIndex = 0;
-            this.hero.TabStop = false;
             // 
             // monster
             // 
@@ -183,15 +166,42 @@
             this.monster.TabIndex = 1;
             this.monster.TabStop = false;
             // 
-            // button2
+            // hero
             // 
-            this.button2.Location = new System.Drawing.Point(38, 131);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Prototype Information";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.hero.BackColor = System.Drawing.Color.Transparent;
+            this.hero.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hero.BackgroundImage")));
+            this.hero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.hero.Location = new System.Drawing.Point(80, 106);
+            this.hero.Name = "hero";
+            this.hero.Size = new System.Drawing.Size(37, 37);
+            this.hero.TabIndex = 0;
+            this.hero.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(52, 391);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(418, 53);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
+            // verseLabel
+            // 
+            this.verseLabel.Location = new System.Drawing.Point(49, 349);
+            this.verseLabel.Name = "verseLabel";
+            this.verseLabel.Size = new System.Drawing.Size(440, 38);
+            this.verseLabel.TabIndex = 0;
+            this.verseLabel.Text = "Verse";
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(278, 53);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(165, 214);
+            this.checkedListBox1.TabIndex = 3;
             // 
             // Form1
             // 
@@ -201,7 +211,7 @@
             this.Controls.Add(this.mainMenuPanel);
             this.Controls.Add(this.combatPanel);
             this.Controls.Add(this.overworldPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Typing to the Cross";
             this.mainMenuPanel.ResumeLayout(false);
@@ -211,8 +221,8 @@
             this.combatPanel.ResumeLayout(false);
             this.combatPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.monster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hero)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,6 +243,7 @@
         private System.Windows.Forms.PictureBox monster;
         private System.Windows.Forms.PictureBox hero;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 

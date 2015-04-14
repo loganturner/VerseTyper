@@ -204,4 +204,3 @@ namespace TttC
         }
     }
 }
-where(x => x.Tags.contains(particularTag))

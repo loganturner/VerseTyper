@@ -10,67 +10,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TttC;
 
 namespace TttC
 {
     public partial class Form1 : Form
     {
-        class Verse
+        public static List<Verse> AllVerses = new List<Verse>();
+        public static List<Verse> SelectedVerses = new List<Verse>(); 
+        public class Verse
         {
-            string[] db = new string[3];
-            List<string> database = new List<string>();
-            List<Verse> verses = new List<Verse>();
-            
-            string tags;
-            string reference;
-            string text;
+            public List<string> Tags = new List<string>();
+            public string Reference;
+            public string Text;
 
-            public Verse()
+            public Verse(IEnumerable<string> tags, string reference, string text)
             {
-
+                Tags = tags.ToList();
+                Reference = reference;
+                Text = text;
             }
 
-            public Verse(string tags, string reference, string text)
-            {
-                this.tags = tags;
-                this.reference = reference;
-                this.text = text;
-            }
-
-            public void readVerses()
+            public static void ReadVerses()
             {
                 TextFieldParser parser = new TextFieldParser("Typing to the Cross Verses.csv");
 
                 parser.HasFieldsEnclosedInQuotes = true;
                 parser.SetDelimiters(",");
 
+                AllVerses.Clear();
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields();
-                    Verse thisVerse = new Verse(fields[0], fields[1], fields[2]);
-                    verses.Add(thisVerse);
+                    Verse thisVerse = new Verse(fields[0].Split(','), fields[1], fields[2]);
+                    AllVerses.Add(thisVerse);
                 }
                 parser.Close();
             }
 
-            internal string getVerse()
+            public static string GetVerse()
             {
-                Verse verse;
+                var thisVerse = SelectedVerses.FirstOrDefault();
+                SelectedVerses.Remove(thisVerse);
 
-                readVerses();
-                
-                int rand = (int)(new Random().Next(1, verses.Count));
-
-                verse = verses.ElementAt(rand);
-
-                string text = verse.text;
-
-                return text;
+                return thisVerse.Text;
             }
 
         }
-
-        
 
         public Form1()
         {
@@ -84,6 +70,14 @@ namespace TttC
         {
             // Check listBox to see which tags are selected,
             // and populate the verse list.
+            Verse.ReadVerses();
+            SelectedVerses.Clear();
+            foreach (var tag in checkedListBox1.CheckedItems)
+            {
+                SelectedVerses.AddRange(AllVerses.Where(x => x.Tags.Contains(tag.ToString())));
+            }
+            SelectedVerses.Shuffle();
+
             mainMenuPanel.Visible = false;
             overworldPanel.Visible = true;
 
@@ -123,8 +117,7 @@ namespace TttC
                     overworldPanel.Visible = false;
                     combatPanel.Visible = true;
                     
-                    Verse v = new Verse();
-                    verseLabel.Text = v.getVerse();
+                    verseLabel.Text = Verse.GetVerse();
                     
                     textBox1.Focus();
                     timer2.Enabled = true;

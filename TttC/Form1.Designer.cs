@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.overworldPanel = new System.Windows.Forms.Panel();
             this.overworldCharacter = new System.Windows.Forms.PictureBox();
@@ -40,8 +41,8 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.combatPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.monster = new System.Windows.Forms.PictureBox();
             this.hero = new System.Windows.Forms.PictureBox();
+            this.monster = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.verseLabel = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
@@ -50,8 +51,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.overworldCharacter)).BeginInit();
             this.combatPanel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.monster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hero)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monster)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,10 +70,10 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(74, 228);
+            this.button1.Location = new System.Drawing.Point(62, 125);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 37);
+            this.button1.Size = new System.Drawing.Size(121, 61);
             this.button1.TabIndex = 1;
             this.button1.Text = "Start Game";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,23 +81,37 @@
             // 
             // mainMenuPanel
             // 
+            this.mainMenuPanel.Controls.Add(this.checkedListBox1);
             this.mainMenuPanel.Controls.Add(this.button2);
             this.mainMenuPanel.Controls.Add(this.label1);
             this.mainMenuPanel.Controls.Add(this.button1);
             this.mainMenuPanel.Location = new System.Drawing.Point(11, 11);
             this.mainMenuPanel.Margin = new System.Windows.Forms.Padding(2);
             this.mainMenuPanel.Name = "mainMenuPanel";
-            this.mainMenuPanel.Size = new System.Drawing.Size(257, 281);
+            this.mainMenuPanel.Size = new System.Drawing.Size(455, 281);
             this.mainMenuPanel.TabIndex = 2;
             this.mainMenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainMenuPanel_Paint);
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "peace",
+            "love",
+            "strength",
+            "faith"});
+            this.checkedListBox1.Location = new System.Drawing.Point(278, 53);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(165, 214);
+            this.checkedListBox1.TabIndex = 3;
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(38, 131);
+            this.button2.Location = new System.Drawing.Point(38, 240);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Prototype Information";
+            this.button2.Text = "Version Information";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -154,17 +169,6 @@
             this.panel1.Size = new System.Drawing.Size(523, 242);
             this.panel1.TabIndex = 3;
             // 
-            // monster
-            // 
-            this.monster.BackColor = System.Drawing.Color.Transparent;
-            this.monster.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("monster.BackgroundImage")));
-            this.monster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.monster.Location = new System.Drawing.Point(432, 57);
-            this.monster.Name = "monster";
-            this.monster.Size = new System.Drawing.Size(54, 86);
-            this.monster.TabIndex = 1;
-            this.monster.TabStop = false;
-            // 
             // hero
             // 
             this.hero.BackColor = System.Drawing.Color.Transparent;
@@ -175,6 +179,17 @@
             this.hero.Size = new System.Drawing.Size(37, 37);
             this.hero.TabIndex = 0;
             this.hero.TabStop = false;
+            // 
+            // monster
+            // 
+            this.monster.BackColor = System.Drawing.Color.Transparent;
+            this.monster.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("monster.BackgroundImage")));
+            this.monster.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.monster.Location = new System.Drawing.Point(432, 57);
+            this.monster.Name = "monster";
+            this.monster.Size = new System.Drawing.Size(54, 86);
+            this.monster.TabIndex = 1;
+            this.monster.TabStop = false;
             // 
             // textBox1
             // 
@@ -188,9 +203,9 @@
             // 
             // verseLabel
             // 
-            this.verseLabel.Location = new System.Drawing.Point(49, 349);
+            this.verseLabel.Location = new System.Drawing.Point(49, 309);
             this.verseLabel.Name = "verseLabel";
-            this.verseLabel.Size = new System.Drawing.Size(440, 38);
+            this.verseLabel.Size = new System.Drawing.Size(440, 78);
             this.verseLabel.TabIndex = 0;
             this.verseLabel.Text = "Verse";
             // 
@@ -217,8 +232,8 @@
             this.combatPanel.ResumeLayout(false);
             this.combatPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.monster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hero)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monster)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,6 +255,7 @@
         private System.Windows.Forms.PictureBox hero;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 

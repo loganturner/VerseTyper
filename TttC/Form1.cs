@@ -1,34 +1,82 @@
-﻿//TTTC main prototype by Joshua Wilfong
+﻿using Microsoft.VisualBasic.FileIO;
+//TTTC main prototype by Joshua Wilfong
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TttC;
 
 namespace TttC
 {
     public partial class Form1 : Form
     {
-        //declare verses
-        //John 3:16
-        const string john316 = "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.";
-        //2 Corinthians 4:16
-        const string corinthians416 = "Therefore we do not lose heart. Even though our outward man is perishing, yet the inward man is being renewed day by day.";
-        //Proverbs 1:8-9
-        const string proverbs18 = "Listen, my son, to your father's instruction and do not forsake your mother’s teaching. They are a garland to grace your head and a chain to adorn your neck.";
-        
-        string[] verseDatabase = new string[3] { john316, corinthians416, proverbs18 };
-        
+        public static List<Verse> AllVerses = new List<Verse>();
+        public static List<Verse> SelectedVerses = new List<Verse>(); 
+        public class Verse
+        {
+            public List<string> Tags = new List<string>();
+            public string Reference;
+            public string Text;
+
+            public Verse(IEnumerable<string> tags, string reference, string text)
+            {
+                Tags = tags.ToList();
+                Reference = reference;
+                Text = text;
+            }
+
+            public static void ReadVerses()
+            {
+                TextFieldParser parser = new TextFieldParser("Typing to the Cross Verses.csv");
+
+                parser.HasFieldsEnclosedInQuotes = true;
+                parser.SetDelimiters(",");
+
+                AllVerses.Clear();
+                while (!parser.EndOfData)
+                {
+                    string[] fields = parser.ReadFields();
+                    if (fields[0].Contains("Tags")) continue;
+                    Verse thisVerse = new Verse(fields[0].Split(',').Select(s => s.Trim()), fields[1], fields[2]);
+                    AllVerses.Add(thisVerse);
+                }
+                parser.Close();
+            }
+
+            public static string GetVerse()
+            {
+                var thisVerse = SelectedVerses.FirstOrDefault();
+                SelectedVerses.Remove(thisVerse);
+
+                return thisVerse.Text;
+            }
+
+        }
+
         public Form1()
         {
             InitializeComponent();
             overworldPanel.Visible = false;
             combatPanel.Visible = false;
             mainMenuPanel.Visible = true;
+
+            Verse.ReadVerses();
+            foreach (var verse in AllVerses)
+            {
+                foreach (var tag in verse.Tags)
+                {
+                    if (!checkedListBox1.Items.Contains(tag))
+                    {
+                        checkedListBox1.Items.Add(tag);
+                    }
+                }
+            }
         }
 
         double totalTime;
@@ -37,6 +85,15 @@ namespace TttC
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Check listBox to see which tags are selected,
+            // and populate the verse list.
+            SelectedVerses.Clear();
+            foreach (var tag in checkedListBox1.CheckedItems)
+            {
+                SelectedVerses.AddRange(AllVerses.Where(x => x.Tags.Contains(tag.ToString())));
+            }
+            SelectedVerses.Shuffle();
+
             mainMenuPanel.Visible = false;
             overworldPanel.Visible = true;
 
@@ -80,7 +137,9 @@ namespace TttC
                     MessageBox.Show("Encounter! Prepare for Battle!");
                     overworldPanel.Visible = false;
                     combatPanel.Visible = true;
-                    verseLabel.Text = verseDatabase[(int)(new Random().Next(0, verseDatabase.Length))];
+                    
+                    verseLabel.Text = Verse.GetVerse();
+                    
                     textBox1.Focus();
                     timer2.Enabled = true;
                 }

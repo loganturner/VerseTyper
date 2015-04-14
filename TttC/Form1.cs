@@ -26,13 +26,14 @@ namespace TttC
         string[] verseDatabase = new string[3] { john316, corinthians416, proverbs18 };
 
         //string[,] db;
-
         class Verse
         {
-            string[,] db;
+            string[] db = new string[3];
+            List<string> database = new List<string>();
+            List<Verse> verses = new List<Verse>();
             
             // Figure out how to make tags an array
-            string[] tags;
+            string tags;
             string reference;
             string text;
 
@@ -41,12 +42,7 @@ namespace TttC
 
             }
 
-            public Verse(string[] tags)
-            {
-                this.tags = tags;
-            }
-
-            public Verse(string[] tags, string reference, string text)
+            public Verse(string tags, string reference, string text)
             {
                 this.tags = tags;
                 this.reference = reference;
@@ -55,45 +51,33 @@ namespace TttC
 
             public void readVerses()
             {
-                TextFieldParser parser = new TextFieldParser(new StringReader("../Typing to the Cross Verses.csv"));
+                TextFieldParser parser = new TextFieldParser("Typing to the Cross Verses.csv");
 
-
-                //parser.TextFieldType = FieldType.Delimited;
                 parser.HasFieldsEnclosedInQuotes = true;
                 parser.SetDelimiters(",");
-
-                int i = 0, j = 0;
 
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields();
-                    foreach (string field in fields)
-                    {
-                        db[i, j] = field;
-
-                    }
-
-                    j++;
-                    if (j == 2)
-                    {
-                        j = 0;
-                        i++;
-                    }
+                    Verse thisVerse = new Verse(fields[0], fields[1], fields[2]);
+                    verses.Add(thisVerse);
                 }
-                i = 0;
-                j = 0;
                 parser.Close();
             }
 
             internal string getVerse()
             {
-                string verse;
+                Verse verse;
 
                 readVerses();
+                
+                int rand = (int)(new Random().Next(1, verses.Count));
 
-                verse = db[(int)(new Random().Next(1, db.Length)), 2];
+                verse = verses.ElementAt(rand);
 
-                return verse;
+                string text = verse.text;
+
+                return text;
             }
 
         }
@@ -152,7 +136,6 @@ namespace TttC
                     Verse v = new Verse();
                     verseLabel.Text = v.getVerse();
                     
-                    //verseLabel.Text = verseDatabase[(int)(new Random().Next(0, verseDatabase.Length))];
                     textBox1.Focus();
                     timer2.Enabled = true;
                 }

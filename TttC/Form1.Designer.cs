@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.mainMenuPanel = new System.Windows.Forms.Panel();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.overworldPanel = new System.Windows.Forms.Panel();
             this.overworldCharacter = new System.Windows.Forms.PictureBox();
@@ -44,7 +45,6 @@
             this.hero = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.verseLabel = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.mainMenuPanel.SuspendLayout();
             this.overworldPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.overworldCharacter)).BeginInit();
@@ -90,6 +90,19 @@
             this.mainMenuPanel.Size = new System.Drawing.Size(455, 281);
             this.mainMenuPanel.TabIndex = 2;
             this.mainMenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainMenuPanel_Paint);
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "peace",
+            "love",
+            "strength",
+            "faith"});
+            this.checkedListBox1.Location = new System.Drawing.Point(278, 53);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(165, 214);
+            this.checkedListBox1.TabIndex = 3;
             // 
             // button2
             // 
@@ -194,14 +207,6 @@
             this.verseLabel.Size = new System.Drawing.Size(440, 38);
             this.verseLabel.TabIndex = 0;
             this.verseLabel.Text = "Verse";
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(278, 53);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(165, 214);
-            this.checkedListBox1.TabIndex = 3;
             // 
             // Form1
             // 

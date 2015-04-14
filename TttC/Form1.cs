@@ -42,7 +42,8 @@ namespace TttC
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields();
-                    Verse thisVerse = new Verse(fields[0].Split(','), fields[1], fields[2]);
+                    if (fields[0].Contains("Tags")) continue;
+                    Verse thisVerse = new Verse(fields[0].Split(',').Select(s => s.Trim()), fields[1], fields[2]);
                     AllVerses.Add(thisVerse);
                 }
                 parser.Close();
@@ -64,13 +65,24 @@ namespace TttC
             overworldPanel.Visible = false;
             combatPanel.Visible = false;
             mainMenuPanel.Visible = true;
+
+            Verse.ReadVerses();
+            foreach (var verse in AllVerses)
+            {
+                foreach (var tag in verse.Tags)
+                {
+                    if (!checkedListBox1.Items.Contains(tag))
+                    {
+                        checkedListBox1.Items.Add(tag);
+                    }
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             // Check listBox to see which tags are selected,
             // and populate the verse list.
-            Verse.ReadVerses();
             SelectedVerses.Clear();
             foreach (var tag in checkedListBox1.CheckedItems)
             {

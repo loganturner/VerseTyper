@@ -202,9 +202,9 @@
             // 
             // verseLabel
             // 
-            this.verseLabel.Location = new System.Drawing.Point(49, 349);
+            this.verseLabel.Location = new System.Drawing.Point(49, 309);
             this.verseLabel.Name = "verseLabel";
-            this.verseLabel.Size = new System.Drawing.Size(440, 38);
+            this.verseLabel.Size = new System.Drawing.Size(440, 78);
             this.verseLabel.TabIndex = 0;
             this.verseLabel.Text = "Verse";
             // 
